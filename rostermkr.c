@@ -191,16 +191,16 @@ void freeAll(void){
 	struct node *tstptr2=NULL;
 	headReset();
 	free(studentNames);
-    tstptr1=head->next;
-	tstptr2=head;
+    tstptr2=head->next;
+	tstptr1=head;
 	while(tstptr1!=NULL ){
-		free(tstptr1->name);
+		free(tstptr1->name);//2
 		for(size_t  j=0; j<(tstptr1->details->noClass); j++){
             free(tstptr1->details->classTaken[j]);
 		}
 		free(tstptr1->details->classTaken);
 		free(tstptr1->details);
-		free(tstptr1);
+		free(tstptr1);//1
 		tstptr1=tstptr2;
 		if(tstptr2!=NULL){
 			tstptr2=tstptr2->next;
