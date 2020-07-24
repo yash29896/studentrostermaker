@@ -340,5 +340,6 @@ int main(void){
 	fileCreate(result, final);
 	
 	freeAll(&result, &final);
+	printf("\n@@@@@@@THANK YOU FOR USING ROSTER MAKER v0.1 @@@@@@@@@");
 	return EXIT_SUCCESS;
 }
