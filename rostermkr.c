@@ -36,7 +36,7 @@ int checkInArray( char* chara, struct classData* test, int N);
 char** finalAlloc(struct classData* result);
 void fileCreate(struct classData *result, char** final);
 void headReset(void); 
-void freeAll(void);
+void freeAll(struct classData **result, char ***final);
 
 struct node *head=NULL;
 struct node *headrst=NULL;
@@ -185,8 +185,15 @@ void init(struct node** wptr){
 	    alloCheck((*wptr)->details);
 	(*wptr)->next = NULL;
 }
-//free memory allocated to linked list only 
-void freeAll(void){
+//free memory allocated to linked list , result . final  
+void freeAll(struct classData **result, char ***final){
+	struct classData * freeResult= *result;
+	char ** freeFinal=*final;
+	for(int i=0; i<cnt3; i++){
+	free(freeFinal[i]);
+	}
+	free(freeFinal);
+	free(freeResult);
 	struct node *tstptr1=NULL;
 	struct node *tstptr2=NULL;
 	headReset();
@@ -327,14 +334,11 @@ int main(void){
     studentNames=malloc(noOfStudents*MAX_LENGTH);
 	    alloCheck(studentNames);
 	prgmSt();
+	 
 	struct classData *result = resolve();
     char **final = finalAlloc(result);
 	fileCreate(result, final);
-	for(int i=0; i<cnt3; i++){
-	free(final[i]);
-	}
-	free(final);
-	free(result);
-	freeAll();
+	
+	freeAll(&result, &final);
 	return EXIT_SUCCESS;
 }
