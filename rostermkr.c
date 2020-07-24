@@ -119,7 +119,7 @@ void scanCheck(int tst){
 //error control for string duplication in classes a particular student attended autocorrect repitition and details->noClass
 void checkStrDup(struct node** vptr){
 	int paraA = (*vptr)->details->noClass;
-	int flag,cntr=0;
+	int flag=0,cntr=0;
 	for(int i=0;i<paraA-1;i++){ 
 		for(int j=i; j<paraA-1; j++ ){
 			if(strcmp((*vptr)->details->classTaken[i],"\0")!=0){
